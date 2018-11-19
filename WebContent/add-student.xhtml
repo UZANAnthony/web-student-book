@@ -13,10 +13,24 @@
 	<h1>New Student</h1>
 	
 	<h:form>
-		<p>First Name   <h:inputText id="firstname" value="#{student.firstname}" /></p>
-		<p>Last Name    <h:inputText id="lastname" value="#{student.lastname}" /></p>
-		<p>Email        <h:inputText id="email" value="#{student.email}"/></p>
+		<p>
+			First Name   
+			<h:inputText id="firstname" value="#{student.firstname}" required="true" requiredMessage="Fill the firstname!"/>
+			<h:message for="firstname" style="color:red"/>
+		</p>
+		<p>
+			Last Name    
+			<h:inputText id="lastname" value="#{student.lastname}" required="true" requiredMessage="Fill the lastname!"/>
+			<h:message for="lastname" style="color:red"/>
+		</p>
+		<p>
+			Email        
+			<h:inputText id="email" value="#{student.email}" validator="#{student.validateStudentEmail}"/>
+			<h:message for="email" style="color:red"/>
+		</p>
 		<h:commandButton value="Save" action="#{studentManager.addStudent(student)}"/>
+	</h:form>
+	<h:form>
 		<h:commandButton value="Cancel" action="list-students"/>
 	</h:form>
 	

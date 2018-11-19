@@ -10,17 +10,32 @@
 </h:head>
 
 <h:body>
-	<h1>New Student</h1>
+	<h1>Edit Student</h1>
+	
 	
 	<h:form>
-		<p>ID           <h:inputText id="id" value="#{student.id}"/></p>
-		<p>First Name   <h:inputText id="firstname" value="#{student.firstname}"/></p>
-		<p>Last Name    <h:inputText id="lastname" value="#{student.lastname}"/></p>
-		<p>Email        <h:inputText id="email" value="#{student.email}"/></p>
-		
+		<p>
+			<h:inputText id="id" value="#{student.id}" style="visibility:hidden;"/>
+		</p>
+		<p>
+			First Name   
+			<h:inputText id="firstname" value="#{student.firstname}" required="true" requiredMessage="Fill the firstname!"/>
+			<h:message for="firstname" style="color:red"/>
+		</p>
+		<p>
+			Last Name    
+			<h:inputText id="lastname" value="#{student.lastname}" required="true" requiredMessage="Fill the lastname!"/>
+			<h:message for="lastname" style="color:red"/>
+		</p>
+		<p>
+			Email        
+			<h:inputText id="email" value="#{student.email}" validator="#{student.validateStudentEmail}"/>
+			<h:message for="email" style="color:red"/>
+		</p>
 		<h:commandButton value="Save" action="#{studentManager.updateStudent(student)}"/>
+	</h:form>
+	<h:form>
 		<h:commandButton value="Cancel" action="list-students"/>
-		
 	</h:form>
 	
 </h:body>

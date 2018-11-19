@@ -2,8 +2,12 @@ package com.webzan.managedbeans;
 
 import java.io.Serializable;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 @ManagedBean
 @RequestScoped
@@ -65,6 +69,19 @@ public class Student implements Serializable{
 		this.firstname = firstname;
 		this.lastname = lastname;
 		this.email = email;
-	}	
+	}
+	
+	// Custom validation
+	
+	public void validateStudentEmail(FacesContext context, UIComponent component, Object value) throws ValidatorException{
+		if(value == null) {
+			return;
+		}
+		String data = value.toString();
+		if(!data.contains("@")) {
+			FacesMessage message = new FacesMessage("Email should contain \'@\'");
+			throw new ValidatorException(message);
+		}
+	}
 
 }
