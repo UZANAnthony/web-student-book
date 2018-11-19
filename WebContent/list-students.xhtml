@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<f:metadata>
+	<f:event listener="#{studentManager.loadStudents()}" type="preRenderView"></f:event>
+</f:metadata>
+      
+<h:head>
+	<title><ui:insert name="title">List Students</ui:insert></title>
+</h:head>
+
+<h:body>
+	<h1>List of Students</h1>
+	
+	<h:dataTable border="1" value="#{studentManager.students}" var="tempStudent">
+		
+		<h:column>
+			<f:facet name="header">ID</f:facet>
+			#{tempStudent.id}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">First Name</f:facet>
+			#{tempStudent.firstname}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Last Name</f:facet>
+			#{tempStudent.lastname}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Email</f:facet>
+			#{tempStudent.email}
+		</h:column>
+		
+		<h:column>
+			<f:facet name="header">Action</f:facet>
+			<h:form>
+				<h:commandButton value="Edit" action="#{studentManager.loadStudent(tempStudent.id)}"/>
+				<h:commandButton value="Delete" action="#{studentManager.deleteStudent(tempStudent.id)}"/>
+			</h:form>
+		</h:column>
+		
+	</h:dataTable>
+	
+	<h:form><h:commandButton value="Add new student" action="add-student"/></h:form>
+	
+</h:body>
+
+</html>
