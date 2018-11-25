@@ -56,8 +56,4 @@ public class StudentEntity implements Serializable{
 		super();
 	}
 	
-	
-	
-	
-	
 }

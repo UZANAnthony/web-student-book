@@ -49,7 +49,6 @@ public class StudentDbUtil {
 	public static Student fetchStudent(int id) {
 		em = factory.createEntityManager();
 		StudentEntity student = new StudentEntity();
-		//student = (StudentEntity)em.createQuery("SELECT s FROM StudentEntity AS s WHERE s.id =" + id).getSingleResult();
 		student = em.find(StudentEntity.class, id);
 		Student new_s = new Student(student.getId(), student.getFirstname(), student.getLastname(), student.getEmail());
 		return new_s;
@@ -58,10 +57,7 @@ public class StudentDbUtil {
 	public static void updateStudent(Student s) {
 		em = factory.createEntityManager();
 		StudentEntity student = new StudentEntity();
-		//student = (StudentEntity)em.createQuery("SELECT s FROM StudentEntity AS s WHERE s.id = " + s.getId()).getSingleResult();
 		student = em.find(StudentEntity.class, s.getId());
-		//System.out.println(s.getId());
-		//student.setId(s.getId());
 		student.setFirstname(s.getFirstname());
 		student.setLastname(s.getLastname());
 		student.setEmail(s.getEmail());
@@ -84,8 +80,5 @@ public class StudentDbUtil {
 			e.printStackTrace();
 		}
 	}
-	
-	
-
 	
 }
