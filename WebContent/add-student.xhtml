@@ -10,21 +10,23 @@
 </h:head>
 
 <h:body>
+
+	<h:outputStylesheet library="css" name="style.css"/>
 	<h1>New Student</h1>
 	
 	<h:form>
 		<p>
-			First Name   
+			<label>First Name</label>   
 			<h:inputText id="firstname" value="#{student.firstname}" required="true" requiredMessage="Fill the firstname!"/>
 			<h:message for="firstname" style="color:red"/>
 		</p>
 		<p>
-			Last Name    
+			<label>Last Name</label>    
 			<h:inputText id="lastname" value="#{student.lastname}" required="true" requiredMessage="Fill the lastname!"/>
 			<h:message for="lastname" style="color:red"/>
 		</p>
 		<p>
-			Email        
+			<label>Email</label>        
 			<h:inputText id="email" value="#{student.email}" validator="#{student.validateStudentEmail}"/>
 			<h:message for="email" style="color:red"/>
 		</p>
